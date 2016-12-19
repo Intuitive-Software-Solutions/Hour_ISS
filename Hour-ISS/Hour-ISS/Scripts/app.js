@@ -2,7 +2,7 @@
     let now = Date.now();
     let hoursList = getPast24Hrs(now);
     let coordinates = getISSLocations(hoursList);
-    // coordinates.forEach($('#locations').append('<p>' + element + '</p>'));
+    coordinates.forEach($('#locations').append('<p>' + element + '</p>'));
 
 });
 
