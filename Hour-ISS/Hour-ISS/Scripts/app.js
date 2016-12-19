@@ -23,7 +23,6 @@ var getISSLocations = function (times) {
     let issUrl = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps=" + times;
     console.log(issUrl);
     $.ajax({
-        crossDomain: true; 
     url: issUrl,
     datatype: "JSONP",
     success: function (data) {
