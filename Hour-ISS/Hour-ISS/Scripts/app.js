@@ -58,7 +58,6 @@ var convertToCountryCode = function (element) {
         }
 
     }).done(function(data){
-        console.log("dun");
     }).fail(function(data){
         console.log("!!!!!failed");
     })
@@ -79,8 +78,6 @@ var getOcean = function (element) {
         }
 
     }).done(function (data) {
-        
-        console.log("done");
     }).fail(function (data) {
         console.log("!!!!!failed");
     })
