@@ -5,7 +5,7 @@
     newmap = getLabels(newmap);
     console.log(newmap);
     passToController(newmap);
-
+    
 
 });
 
@@ -58,6 +58,8 @@ var getISSLocations = function (times) {
     console.log("!!!!! failed" + map);
     console.log(data);
 })
+    map[0].latitude
+    map[0].longitude
     return  map;
 }
 
