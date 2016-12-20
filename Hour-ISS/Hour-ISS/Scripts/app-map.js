@@ -8,7 +8,7 @@
 var map;
 function initMap(array) {
         map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
+        zoom: 2,
         center: new google.maps.LatLng(0, 0),
         mapTypeId: 'terrain'
     });
