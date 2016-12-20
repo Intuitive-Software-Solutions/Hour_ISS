@@ -6,9 +6,9 @@
     <div id="locations">locations</div>
 </div>
 
-<div class="jumbotron">
-    <div id="map"></div>
-</div>
+
+<div id="map"></div>
+
 
 <div class="row">
     <div class="col-md-5">
@@ -16,11 +16,6 @@
         <p>
             ISS most recent tweets
         </p>
-        <a class="twitter-timeline"
-           href="https://twitter.com/Space_Station"
-           data-width="300"
-           data-height="300">
-        </a>
     </div>    
     <div class="col-md-5 offset-md-2">
         <h2>astronomy picture of the day</h2>
@@ -31,6 +26,6 @@
 </div>
 <div id="dataBinder" data-request-url="@Url.Action("Save", "Home")"></div>
 @Scripts.Render("~/bundles/jquery")
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdqJjogyccEdtBXxsVHRS8bXLyfg5xVQI&callback=initMap"></script>
 <script type="text/javascript" src="~/Scripts/app.js"></script>
 <script type="text/javascript" src="~/Scripts/app-map.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdqJjogyccEdtBXxsVHRS8bXLyfg5xVQI&callback=initMap"></script>
