@@ -4,10 +4,25 @@
     var newmap = getISSLocations(hoursList);
     newmap = getLabels(newmap);
     console.log(newmap);
+    passToController(newmap);
 
 
 });
 
+var passToController = function (array) {
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: $('#dataBinder').data('request-url'),
+        contentType: "application/json",
+        dataType: 'json',
+        data: JSON.stringify(array),
+        success: function (result) {
+            alert('it worked!');
+        }
+    });
+}
 //timestamps from this API are expressed in milliseconds since the Unix epoch
 //convert to seconds as this is what ISS api uses
 //each hour is 3600 seconds.  
@@ -35,7 +50,7 @@ var getISSLocations = function (times) {
 
     }).done(function (data) {
         data.forEach(function (elements) {
-            map.push({ lat: elements.latitude, lon: elements.longitude });
+            map.push({ time:new Date(elements.timestamp).toTimeString(), lat: elements.latitude, lon: elements.longitude });
 
         });
 }
@@ -58,7 +73,6 @@ var convertToCountryCode = function (element) {
         }
 
     }).done(function(data){
-        console.log("dun");
     }).fail(function(data){
         console.log("!!!!!failed");
     })
@@ -79,8 +93,6 @@ var getOcean = function (element) {
         }
 
     }).done(function (data) {
-        
-        console.log("done");
     }).fail(function (data) {
         console.log("!!!!!failed");
     })
@@ -93,24 +105,26 @@ var getLabels = function (locationArray) {
         oceanTest = getOcean(element);
         if (countryTest !== undefined) {
             return {
+                time: element.time,
                 lat: element.lat,
                 lon: element.lon,
-                country:countryTest
+                location:countryTest
             };
         }
         if (oceanTest !== undefined) {
             return {
-
+                time: element.time,
                 lat: element.lat,
                 lon: element.lon,
-                country: oceanTest
+                location: oceanTest
             };
         }
         else{
-        return {
+            return {
+            time: element.time,
             lat: element.lat,
             lon: element.lon,
-            country: "Couldn't determine a locality"
+            location: "Couldn't determine a locality"
         };
         }
 
