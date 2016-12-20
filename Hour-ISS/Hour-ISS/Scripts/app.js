@@ -1,7 +1,10 @@
 ﻿$(document).ready(function () {
     let now = Date.now();
     let hoursList = getPast24Hrs(now);
-    let coordinates = getISSLocations(hoursList);
+    var newmap = getISSLocations(hoursList);
+    newmap = getLabels(newmap);
+    console.log(newmap);
+
 
 });
 
@@ -20,23 +23,97 @@ var getPast24Hrs = function (now) {
 
 var getISSLocations = function (times) {
     let issUrl = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps=" + times;
+    var map = [];
     console.log(issUrl);
     $.ajax({
     url: issUrl,
     datatype: "JSONP",
+    async: false,
     success: function (data) {
-        console.log(data);
-        data.forEach(function(elements){
-            $('#locations').append(' lat:' + elements.latitude + ', lon:' + elements.longitude + '</br>')
-        });
-        return data;
-
+        console.log("success");
     }
-}).done(function (data) {
-    console.log("done");
+
+    }).done(function (data) {
+        data.forEach(function (elements) {
+            map.push({ lat: elements.latitude, lon: elements.longitude });
+
+        });
 }
 ).fail(function (data) {
-    console.log("!!!!! failed");
+    console.log("!!!!! failed" + map);
     console.log(data);
 })
+    return  map;
 }
+
+var convertToCountryCode = function (element) {
+    let countryCode = "";
+    let geoCode = "http://api.geonames.org/countryCode?lat=" + element.lat + "&lng=" + element.lon + "&username=hour_iss&type=JSON";
+    $.getJSON({
+        url:geoCode,
+        datatype: "json",
+        async: false,
+        success: function (data) {
+           countryCode = data.countryCode;
+        }
+
+    }).done(function(data){
+        console.log("dun");
+    }).fail(function(data){
+        console.log("!!!!!failed");
+    })
+
+    return countryCode;
+}
+
+
+var getOcean = function (element) {
+    let geoCode = "http://api.geonames.org/oceanJSON?formatted=true&lat=" + element.lat + "&lng=" + element.lon + "&username=hour_iss";
+    let ocean = "";
+    $.getJSON({
+        url: geoCode,
+        datatype: "json",
+        async: false,
+        success: function (data) {
+            ocean = data.ocean.name;
+        }
+
+    }).done(function (data) {
+        
+        console.log("done");
+    }).fail(function (data) {
+        console.log("!!!!!failed");
+    })
+    return ocean;
+}
+
+var getLabels = function (locationArray) {
+    let result = locationArray.map(function (element) {
+        countryTest = convertToCountryCode(element);
+        oceanTest = getOcean(element);
+        if (countryTest !== undefined) {
+            return {
+                lat: element.lat,
+                lon: element.lon,
+                country:countryTest
+            };
+        }
+        if (oceanTest !== undefined) {
+            return {
+
+                lat: element.lat,
+                lon: element.lon,
+                country: oceanTest
+            };
+        }
+        else{
+        return {
+            lat: element.lat,
+            lon: element.lon,
+            country: "Couldn't determine a locality"
+        };
+        }
+
+    });
+
+    return result;}
