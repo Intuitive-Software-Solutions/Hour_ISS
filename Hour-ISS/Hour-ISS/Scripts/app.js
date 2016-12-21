@@ -5,10 +5,28 @@
     newmap = getLabels(newmap);
     console.log(newmap);
     passToController(newmap);
+    APOD();
     
 
 });
 
+var APOD = function () {
+    $.ajax({
+        url: "https://api.nasa.gov/planetary/apod?api_key=guOb2qu4r4gd5Cq3o7FZcdzOif9aIUedG8jEk7wK",
+        datatype: "JSONP",
+        success: function (data) {
+            console.log("success");
+            let html = "";
+            if(data.media_type!== "image"){
+                html+='<span id="APODtext">'+ data.explanation + '</span>';
+            }
+            else{
+                html+='<img src="'+ data.url + '" id="APODImg" >';
+            }
+            $("#APOD").append(html);
+        }
+    });
+}
 var passToController = function (array) {
 
     $.ajax({

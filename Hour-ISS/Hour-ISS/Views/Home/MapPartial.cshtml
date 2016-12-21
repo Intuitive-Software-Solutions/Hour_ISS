@@ -1,0 +1,25 @@
+﻿
+<div id="map"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+   
+        console.log(ISSContext + "DONE");
+        alert("done!!");
+        GetAllEvents();
+    });
+
+    function GetAllEvents() {
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: @Url.Action("GetModels","Home"),
+            success: function (result) {
+                alert(result.toString() + "  " + result);
+            },
+            error: function (req, status, error) {
+                alert("Error");
+            }
+        });
+    };
+</script>

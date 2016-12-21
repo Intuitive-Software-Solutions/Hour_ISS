@@ -39,9 +39,19 @@ namespace Hour_ISS.Controllers
             {
                 ISScontext[i].tweets = GetTweets(i);
             }
+            
             return View("Save");
         }
 
+        [HttpGet]
+        public ActionResult PostData()
+        {
+            if (ISScontext == null)
+            {
+                return null;
+            }
+            return Json(ISScontext, JsonRequestBehavior.AllowGet);
+        }
         public ITweet[] GetTweets(int id)
         {
             if (ISScontext != null)
@@ -55,6 +65,10 @@ namespace Hour_ISS.Controllers
                 };
 
                 var tweets = Search.SearchTweets(searchParameter);
+                if (tweets == null)
+                {
+                    tweets = new ITweet[0];
+                }
                 return tweets.ToArray();
             }
             return null;
