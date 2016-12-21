@@ -2,9 +2,22 @@
     let now = Date.now();
     let hoursList = getPast24Hrs(now);
     var newmap = getISSLocations(hoursList);
+    getData();
     initMap(newmap);
 });
 
+
+var getData = function getData() {
+    $.ajax({
+        type: "GET",
+        url: $('#GetData').data('request-url'),
+        dataType: "json",
+        success: function (result) {
+            alert('worked!!');
+            console.log(result);
+        }
+    });
+}
 var map;
 function initMap(array) {
         map = new google.maps.Map(document.getElementById('map'), {
