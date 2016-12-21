@@ -11,7 +11,7 @@ namespace Hour_ISS.Models
 
         public string time { get; set; }
         public double lat { get; set; }
-        public double lon { get; set; }
+        public double lng { get; set; }
         public string location { get; set; }
         public ITweet[] tweets { get; set; }
     

@@ -48,7 +48,7 @@ namespace Hour_ISS.Controllers
             {
                 var searchParameter = new SearchTweetsParameters("*")
                 {
-                    GeoCode = new GeoCode(ISScontext[id].lat, ISScontext[id].lon, 50, DistanceMeasure.Miles),
+                    GeoCode = new GeoCode(ISScontext[id].lat, ISScontext[id].lng, 50, DistanceMeasure.Miles),
                     SearchType = SearchResultType.Popular,
                     MaximumNumberOfResults = 10,
                     Filters = TweetSearchFilters.Images

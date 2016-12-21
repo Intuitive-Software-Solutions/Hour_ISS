@@ -47,13 +47,12 @@ var getISSLocations = function (times) {
     success: function (data) {
         console.log("success");
     }
-
     }).done(function (data) {
         data.forEach(function (elements) {
             let d = new Date();
             d.setTime(elements.timestamp * 1000);
             d.toUTCString();
-            map.push({ time: d, lat: elements.latitude, lon: elements.longitude });
+            map.push({ time: d, lat: elements.latitude, lng: elements.longitude });
         });
 }
 ).fail(function (data) {
@@ -67,7 +66,7 @@ var getISSLocations = function (times) {
 
 var convertToCountryCode = function (element) {
     let countryCode = "";
-    let geoCode = "http://api.geonames.org/countryCode?lat=" + element.lat + "&lng=" + element.lon + "&username=hour_iss&type=JSON";
+    let geoCode = "http://api.geonames.org/countryCode?lat=" + element.lat + "&lng=" + element.lng + "&username=hour_iss&type=JSON";
     $.getJSON({
         url:geoCode,
         datatype: "json",
@@ -86,7 +85,7 @@ var convertToCountryCode = function (element) {
 
 
 var getOcean = function (element) {
-    let geoCode = "http://api.geonames.org/oceanJSON?formatted=true&lat=" + element.lat + "&lng=" + element.lon + "&username=hour_iss";
+    let geoCode = "http://api.geonames.org/oceanJSON?formatted=true&lat=" + element.lat + "&lng=" + element.lng + "&username=hour_iss";
     let ocean = "";
     $.getJSON({
         url: geoCode,
@@ -117,7 +116,7 @@ var getLabels = function (locationArray) {
             return {
                 time: element.time,
                 lat: element.lat,
-                lon: element.lon,
+                lng: element.lng,
                 location:countryTest
             };
         }
@@ -125,7 +124,7 @@ var getLabels = function (locationArray) {
             return {
                 time: element.time,
                 lat: element.lat,
-                lon: element.lon,
+                lng: element.lng,
                 location: oceanTest
             };
         }
@@ -133,7 +132,7 @@ var getLabels = function (locationArray) {
             return {
             time: element.time,
             lat: element.lat,
-            lon: element.lon,
+            lng: element.lng,
             location: "Couldn't determine a locality"
         };
         }
