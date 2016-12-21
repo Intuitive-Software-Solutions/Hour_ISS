@@ -18,12 +18,12 @@ var APOD = function () {
             console.log("success");
             let html = "";
             if(data.media_type!== "image"){
-                html+='<span id="APODtext">'+ data.explanation + '</span>';
+                html='<iframe height:"450" width:"600"  id="APODtext"src ="'+ data.url + '"></iframe>';
             }
             else{
-                html+='<img src="'+ data.url + '" id="APODImg" >';
+                html='<img src="'+ data.url + '" id="APODImg" >';
             }
-            $("#APOD").append(html);
+            $("#APOD").empty().append(html);
         }
     });
 }
