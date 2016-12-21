@@ -27,7 +27,7 @@ textarea {
 }
 #map{
     height: 650px;
-    overflow: visible;
+    width: 1024px;
 }
 html, body{
     height: 100%;

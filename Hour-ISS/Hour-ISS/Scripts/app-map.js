@@ -8,8 +8,9 @@
 var map;
 function initMap(array) {
         map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 2,
-        center: new google.maps.LatLng(0, 0),
+            zoom: 2,
+            minzoom: 2,
+        center: new google.maps.LatLng(24, 10),
         mapTypeId: 'terrain'
     });
     var script = document.createElement('script');
