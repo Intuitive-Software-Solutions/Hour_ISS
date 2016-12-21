@@ -50,8 +50,10 @@ var getISSLocations = function (times) {
 
     }).done(function (data) {
         data.forEach(function (elements) {
-            map.push({ time:new Date(elements.timestamp).toTimeString(), lat: elements.latitude, lon: elements.longitude });
-
+            let d = new Date();
+            d.setTime(elements.timestamp * 1000);
+            d.toUTCString();
+            map.push({ time: d, lat: elements.latitude, lon: elements.longitude });
         });
 }
 ).fail(function (data) {
