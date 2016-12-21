@@ -105,8 +105,14 @@ var getOcean = function (element) {
 
 var getLabels = function (locationArray) {
     let result = locationArray.map(function (element) {
+
         countryTest = convertToCountryCode(element);
-        oceanTest = getOcean(element);
+        try{
+            oceanTest = getOcean(element);
+        }
+        catch (ex) {
+            oceanTest = undefined;
+        }
         if (countryTest !== undefined) {
             return {
                 time: element.time,
