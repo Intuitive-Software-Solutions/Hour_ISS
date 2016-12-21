@@ -6,13 +6,14 @@ using System.Web;
 using System.Web.Mvc;
 using Tweetinvi;
 using Tweetinvi.Models;
+using Tweetinvi.Parameters;
 
 namespace Hour_ISS.Controllers
 {
     public class HomeController : Controller
                     
     {
-        IEnumerable<ISSTimesModel> ISScontext; 
+        ISSTimesModel[] ISScontext; 
         public ActionResult Index()
         {
             // Applies credentials for the current thread. If used for the first time, set up the ApplicationCredentials
@@ -30,12 +31,35 @@ namespace Hour_ISS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(IEnumerable<ISSTimesModel> ISSLocations)
+        public ActionResult Save(ISSTimesModel[] ISSLocations)
         {
             ISScontext = ISSLocations;
+            
+            for(int i= 0; i<ISScontext.Length; i++)
+            {
+                ISScontext[i].tweets = GetTweets(i);
+            }
             return View("Save");
         }
 
+        public ITweet[] GetTweets(int id)
+        {
+            if (ISScontext != null)
+            {
+                var searchParameter = new SearchTweetsParameters("*")
+                {
+                    GeoCode = new GeoCode(ISScontext[id].lat, ISScontext[id].lon, 50, DistanceMeasure.Miles),
+                    SearchType = SearchResultType.Popular,
+                    MaximumNumberOfResults = 10,
+                    Filters = TweetSearchFilters.Images
+                };
+
+                var tweets = Search.SearchTweets(searchParameter);
+                return tweets.ToArray();
+            }
+            return null;
+
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
