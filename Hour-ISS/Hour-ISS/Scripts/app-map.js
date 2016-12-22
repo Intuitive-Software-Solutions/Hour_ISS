@@ -43,8 +43,9 @@ function initMap(array) {
 function placeMarkers(coords) {
     var latlng
     for (var i = 0; i < coords.length; i++) {
-        latlng = coords[i]
-        for (var i = 0; i < coords.length; i++) {
+        latlng = coords[i];
+        console.log(latlng);
+        for (var index = 0; index < coords.length; index++) {
             var marker = new google.maps.Marker({
                 position: latlng,
                 map: map
@@ -55,6 +56,8 @@ function placeMarkers(coords) {
         }
     }
 }
+
+google.maps.event.addDomListener(window, 'load', initMap(array));
 //var contentString = '<div id="content">' +
 //    '<div id="siteNotice">' +
 //    '</div>' +
