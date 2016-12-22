@@ -25,12 +25,15 @@ function initMap(array) {
             zoom: 2,
             minzoom: 2,
             maxzoom: 2,
-            center: new google.maps.LatLng(24, 10),
+            center: new google.maps.LatLng(26, 8),
             draggable: false,
             zoomControl: false,
             streetViewControl: false,
             scrollwheel: false,
-            mapTypeId: 'satellite'
+            panControl: false,
+            keyboardShortcuts: false,
+            gestureHandling: 'none',
+            mapTypeId: 'terrain'
         });
         console.log("You should see a map")
         refinePositionData(array);
