@@ -33,7 +33,7 @@ function initMap(array) {
         console.log("If you're reading this I didn't break it");
         console.log(array);
         coords = array.map(function (element) {
-            return [{ Coordinates: element.lat+", " +element.lng }]
+            return { lat: element.lat, lng: element.lng }
         });
         console.log(coords);
         placeMarkers(coords);
@@ -46,8 +46,11 @@ function placeMarkers(coords) {
         latlng = coords[i]
         for (var i = 0; i < coords.length; i++) {
             var marker = new google.maps.Marker({
-                position: { latlng },
+                position: latlng,
                 map: map
+            });
+            marker.addListener('click', function () {
+                showCountryInfo(map, marker);
             });
         }
     }
