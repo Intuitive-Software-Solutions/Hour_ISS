@@ -33,7 +33,7 @@ function initMap(array) {
         console.log("If you're reading this I didn't break it");
         console.log(array);
         coords = array.map(function (element) {
-            return [{ Coordinates: "Lat:" + element.lat+", " + element.lng }]
+            return { lat: element.lat, lng: element.lng }
         });
         console.log(coords);
         placeMarkers(coords);
@@ -43,14 +43,11 @@ function initMap(array) {
 function placeMarkers(coords) {
     var latlng
     for (var i = 0; i < coords.length; i++) {
-        latlng = google.maps.LatLng(coords[i]);
+        latlng = coords[i];
         console.log(latlng);
         for (var index = 0; index < coords.length; index++) {
-            var loc = coords[i].split(", ");
-            var lat = parseFloat(loc[0]);
-            var lng = parseFloat(loc[1]);
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng( lat, lng ),
+                position: latlng,
                 map: map
             });
         }
