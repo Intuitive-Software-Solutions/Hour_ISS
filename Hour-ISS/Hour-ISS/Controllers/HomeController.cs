@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Tweetinvi;
@@ -39,18 +40,19 @@ namespace Hour_ISS.Controllers
             {
                 ISScontext[i].tweets = GetTweets(i);
             }
-            
+
+            HttpContext.Application["ISSdb"] = ISScontext;
             return View("Save");
         }
 
         [HttpGet]
         public ActionResult PostData()
         {
-            if (ISScontext == null)
+            while (HttpContext.Application["ISSdb"] == null)
             {
-                return null;
+                Thread.Sleep(10);
             }
-            return Json(ISScontext, JsonRequestBehavior.AllowGet);
+            return Json((ISSTimesModel[])HttpContext.Application["ISSdb"], JsonRequestBehavior.AllowGet);
         }
         public ITweet[] GetTweets(int id)
         {
