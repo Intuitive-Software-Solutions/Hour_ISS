@@ -37,6 +37,11 @@ function initMap() {
             gestureHandling: 'none',
             mapTypeId: 'terrain'
         });
+        google.maps.event.addDomListener(window, "resize", function () {
+            var center = map.getCenter(26, 8);
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(center);
+        });
 }
 
 function refinePositionData(array) {
