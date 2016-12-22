@@ -21,6 +21,7 @@ namespace Hour_ISS
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["ISSdb"] = null;
         }
     }
 }

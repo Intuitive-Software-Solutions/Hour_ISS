@@ -2,23 +2,28 @@
     let now = Date.now();
     let hoursList = getPast24Hrs(now);
     var newmap = getISSLocations(hoursList);
-    //getData();
+    getData();
     initMap();
     refinePositionData(newmap);
 });
 
 
-//var getData = function getData() {
-//    $.ajax({
-//        type: "GET",
-//        url: $('#GetData').data('request-url'),
-//        dataType: "json",
-//        success: function (result) {
-//            alert('worked!!');
-//            console.log(result);
-//        }
-//    });
-//}
+var getData = function getData() {
+    $.ajax({
+        type: "GET",
+        url: $('#GetData').data('request-url'),
+        dataType: "json",
+        success: function (result) {
+            alert('worked!!');
+            alert(result);
+            console.log(result);
+        },
+        error: function (req, status, error) {
+            alert(status);
+            console.log(status);
+        }
+    });
+}
 var map;
 
 function initMap() {
