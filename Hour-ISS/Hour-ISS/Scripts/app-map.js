@@ -21,22 +21,27 @@
 var map;
 
 function initMap(array) {
-    var ward4 = { lat: 43.034433, lng: -87.911640 }
-    var coords;
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 2,
             minzoom: 2,
             maxzoom: 2,
-        center: new google.maps.LatLng(24, 10),
-        mapTypeId: 'satellite'
+            center: new google.maps.LatLng(24, 10),
+            draggable: false,
+            zoomControl: false,
+            streetViewControl: false,
+            mapTypeId: 'satellite'
         });
-        console.log("If you're reading this I didn't break it");
-        console.log(array);
-        coords = array.map(function (element) {
-            return { lat: element.lat, lng: element.lng }
-        });
-        console.log(coords);
-        placeMarkers(coords);
+        console.log("You should see a map")
+        refinePositionData(array);
+}
+
+function refinePositionData(array) {
+    var coords;
+    coords = array.map(function (element) {
+        return { lat: element.lat, lng: element.lng }
+    });
+    console.log(coords);
+    placeMarkers(coords);
 }
 
 
@@ -48,10 +53,10 @@ function placeMarkers(coords) {
         for (var index = 0; index < coords.length; index++) {
             var marker = new google.maps.Marker({
                 position: latlng,
-                map: map
+                map: map               
             });
-            marker.addListener('click', function () {
-                showCountryInfo(map, marker);
+                marker.addListener('click', function () {
+                    showCountryInfo(map, marker);
             });
         }
     }
