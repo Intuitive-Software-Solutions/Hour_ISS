@@ -51,27 +51,24 @@ function refinePositionData(array) {
     coords = array.map(function (element) {
         return { lat: element.lat, lng: element.lng }
     });
-    placeMarkers(coords);
+    placeMarkers(coords, array);
 }
 
 
-function placeMarkers(coords) {
-    var latlng
+function placeMarkers(coords, array) {
     for (var i = 0; i < coords.length; i++) {
-        latlng = coords[i];
-        for (var index = 0; index < coords.length; index++) {
-            createListeningMarker(latlng);
+            createListeningMarker(coords[i], array[i]);
         }
     }
-}
 
-function createListeningMarker(latlng) {
+
+function createListeningMarker(latlng, ISSelement) {
     var marker = new google.maps.Marker({
         position: latlng,
         map: map
     });
     google.maps.event.addListener(marker, 'click', function () {
-        showCountryInfo(map, marker);
+        showCountryInfo(latlng, map, marker, ISSelement );
     });
 }
 

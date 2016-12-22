@@ -25,14 +25,14 @@ var getWorldBankCountries = function () {
 });
 }
 
-var showCountryInfo = function (map, marker) {
+var showCountryInfo = function (latlng, map, marker, ISSelement) {
     var latLng = marker.getPosition();
-    getCountryCode(latLng.lat(), latLng.lng(), function (countryCode) {
+    
         var infowindow = new google.maps.InfoWindow({
-            content: getCountryContent(countryCode),
+            content: getCountryContent(ISSelement.location),
         });
         infowindow.open(map, marker);
-    });
+    
 }
 
 var getCountryCode = function (lat, lon, callback) {
