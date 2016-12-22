@@ -53,5 +53,8 @@ var getCountryContent = function (countryCode) {
     else {
         message = countryCode.location;
     }
+    countryCode.tweets.forEach(function (element) {
+        message += "\n" + element.FullText;
+    })
     return message;
 }
