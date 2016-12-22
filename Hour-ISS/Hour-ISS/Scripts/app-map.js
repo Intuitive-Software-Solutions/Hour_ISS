@@ -10,9 +10,6 @@ var getData = function getData() {
         url: $('#GetData').data('request-url'),
         dataType: "json",
         success: function (result) {
-            alert('worked!!');
-            alert(result);
-            console.log(result);
             refinePositionData(result);
         },
         error: function (req, status, error) {

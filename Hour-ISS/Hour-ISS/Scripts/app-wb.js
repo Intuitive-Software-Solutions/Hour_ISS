@@ -29,7 +29,7 @@ var showCountryInfo = function (latlng, map, marker, ISSelement) {
     var latLng = marker.getPosition();
     
         var infowindow = new google.maps.InfoWindow({
-            content: getCountryContent(ISSelement.location),
+            content: getCountryContent(ISSelement),
         });
         infowindow.open(map, marker);
     
@@ -45,8 +45,13 @@ var getCountryCode = function (lat, lon, callback) {
 }
 
 var getCountryContent = function (countryCode) {
-    // TODO: Replace country code with actual content
-    var country = countries[countryCode];
-    console.log(country);
-    return JSON.stringify(country);
+    message = "";
+    if (countryCode.location.length == 2) {
+        var country = countries[countryCode.location];
+        message = country.name;
+    }
+    else {
+        message = countryCode.location;
+    }
+    return message;
 }
