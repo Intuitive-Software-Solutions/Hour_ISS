@@ -29,6 +29,7 @@ function initMap(array) {
             draggable: false,
             zoomControl: false,
             streetViewControl: false,
+            scrollwheel: false,
             mapTypeId: 'satellite'
         });
         console.log("You should see a map")
