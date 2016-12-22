@@ -3,7 +3,8 @@
     let hoursList = getPast24Hrs(now);
     var newmap = getISSLocations(hoursList);
     //getData();
-    initMap(newmap);
+    initMap();
+    refinePositionData(newmap);
 });
 
 
@@ -20,7 +21,7 @@
 //}
 var map;
 
-function initMap(array) {
+function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 2,
             minzoom: 2,
@@ -35,8 +36,6 @@ function initMap(array) {
             gestureHandling: 'none',
             mapTypeId: 'terrain'
         });
-        console.log("You should see a map")
-        refinePositionData(array);
 }
 
 function refinePositionData(array) {
@@ -44,7 +43,6 @@ function refinePositionData(array) {
     coords = array.map(function (element) {
         return { lat: element.lat, lng: element.lng }
     });
-    console.log(coords);
     placeMarkers(coords);
 }
 
@@ -55,15 +53,19 @@ function placeMarkers(coords) {
         latlng = coords[i];
         console.log(latlng);
         for (var index = 0; index < coords.length; index++) {
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map               
-            });
-                marker.addListener('click', function () {
-                    showCountryInfo(map, marker);
-            });
+            createMarker(latlng);
         }
     }
+}
+
+function createMarker(latlng) {
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map
+    });
+    google.maps.event.addListener(marker, 'click', function () {
+        showCountryInfo(map, marker);
+    });
 }
 
 google.maps.event.addDomListener(window, 'load', initMap(array));

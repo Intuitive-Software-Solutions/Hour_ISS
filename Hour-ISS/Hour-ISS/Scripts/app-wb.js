@@ -50,5 +50,6 @@ var getCountryCode = function (lat, lon, callback) {
 var getCountryContent = function (countryCode) {
     // TODO: Replace country code with actual content
     var country = countries[countryCode];
+    console.log(country);
     return JSON.stringify(country);
 };

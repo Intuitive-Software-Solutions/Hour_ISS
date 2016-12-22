@@ -15,7 +15,6 @@ var APOD = function () {
         url: "https://api.nasa.gov/planetary/apod?api_key=guOb2qu4r4gd5Cq3o7FZcdzOif9aIUedG8jEk7wK",
         datatype: "JSONP",
         success: function (data) {
-            console.log("success");
             let html = "";
             if(data.media_type!== "image"){
                 html='<iframe height:"450" width:"600"  id="APODtext"src ="'+ data.url + '"></iframe>';
@@ -57,7 +56,6 @@ var getPast24Hrs = function (now) {
 var getISSLocations = function (times) {
     let issUrl = "https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps=" + times;
     var map = [];
-    console.log(issUrl);
     $.ajax({
     url: issUrl,
     datatype: "JSONP",
