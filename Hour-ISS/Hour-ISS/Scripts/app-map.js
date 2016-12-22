@@ -1,10 +1,6 @@
 ﻿$(document).ready(function () {
-    let now = Date.now();
-    let hoursList = getPast24Hrs(now);
-    var newmap = getISSLocations(hoursList);
     getData();
     initMap();
-    refinePositionData(newmap);
 });
 
 
@@ -17,6 +13,7 @@ var getData = function getData() {
             alert('worked!!');
             alert(result);
             console.log(result);
+            refinePositionData(result);
         },
         error: function (req, status, error) {
             alert(status);
@@ -45,7 +42,7 @@ function initMap() {
 }
 
 function refinePositionData(array) {
-    var coords;
+    let coords;
     coords = array.map(function (element) {
         return { lat: element.lat, lng: element.lng }
     });
