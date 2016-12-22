@@ -14,10 +14,10 @@ var APOD = function () {
         success: function (data) {
             let html = "";
             if(data.media_type!== "image"){
-                html='<iframe height:"450" width:"600"  id="APODtext"src ="'+ data.url + '"></iframe>';
+                html='<iframe height:"450" width:"600"  id="APOD"src ="'+ data.url + '"></iframe>';
             }
             else{
-                html='<img src="'+ data.url + '" id="APODImg" >';
+                html='<img src="'+ data.url + '" id="APOD" class="img-responsive" >';
             }
             $("#APOD").empty().append(html);
         }

@@ -35,9 +35,12 @@ html, body{
     padding: 0;
 }
 
-#APODDIV{
-    max-height:450px;
-}
 
 #APOD{
+   
+    width: auto;
+}
+#APOD img{
+        max-width: 100%;    
+    _width: 100%;
 }
