@@ -3,11 +3,8 @@
     let hoursList = getPast24Hrs(now);
     var newmap = getISSLocations(hoursList);
     newmap = getLabels(newmap);
-    console.log(newmap);
     passToController(newmap);
     APOD();
-    
-
 });
 
 var APOD = function () {
@@ -73,7 +70,6 @@ var getISSLocations = function (times) {
 }
 ).fail(function (data) {
     console.log("!!!!! failed" + map);
-    console.log(data);
 })
     map[0].latitude
     map[0].longitude
