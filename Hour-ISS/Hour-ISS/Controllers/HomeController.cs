@@ -39,6 +39,7 @@ namespace Hour_ISS.Controllers
             for(int i= 0; i<ISScontext.Length; i++)
             {
                 ISScontext[i].tweets = GetTweets(i);
+                ISScontext[i].trends = GetTrends(i);
             }
 
             HttpContext.Application["ISSdb"] = ISScontext;
@@ -76,6 +77,24 @@ namespace Hour_ISS.Controllers
             return null;
 
         }
+
+        public ITrend[] GetTrends(int id)
+        {
+            if (ISScontext != null)
+            {
+                var closestTrendLocations = Trends.GetClosestTrendLocations(ISScontext[id].lat, ISScontext[id].lng);
+                if (closestTrendLocations != null)
+                {
+                    var woe = closestTrendLocations.ElementAt(0).WoeId;
+                    var trendingTopics = Trends.GetTrendsAt(woe);
+                    return trendingTopics.Trends.ToArray();
+                }
+                return null;
+            }
+            return null;
+
+        }
     }
+
 
 }

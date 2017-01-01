@@ -14,6 +14,7 @@ namespace Hour_ISS.Models
         public double lng { get; set; }
         public string location { get; set; }
         public ITweet[] tweets { get; set; }
+        public ITrend[] trends { get; set; }
     
     }
 }

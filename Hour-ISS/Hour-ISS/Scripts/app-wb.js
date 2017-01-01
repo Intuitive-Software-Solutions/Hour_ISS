@@ -45,16 +45,33 @@ var getCountryCode = function (lat, lon, callback) {
 }
 
 var getCountryContent = function (countryCode) {
-    message = "";
+    message = '<div class="infoWindow">';
     if (countryCode.location.length == 2) {
         var country = countries[countryCode.location];
-        message = country.name;
+        message = '<h3>' + country.name + '</h3>';
+        console.log('******' + country);
     }
     else {
-        message = countryCode.location;
+        message = '<h3>' + countryCode.location + '</h3>';
     }
-    countryCode.tweets.forEach(function (element) {
-        message += "\n" + element.FullText;
-    })
+
+    if (countryCode.trends != null) {
+        message +='<div class="dropdown"> <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Trends   <span class="caret"></span></button>'
+        message += '<ul class ="dropdown-menu" id="trends">'
+        countryCode.trends.forEach(function (element) {
+            message += '<li><a href = "'+element.URL+'">' + element.Name + '</a></li>'; 
+        })
+        message += '</ul> </div>';
+    }
+    if (countryCode.tweets[0] != null) {
+        message += '<div class="dropdown"> <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Tweets   <span class="caret"></span></button>'
+        message += '<ul class ="dropdown-menu" id="tweets">'
+
+        countryCode.tweets.forEach(function (element) {
+            message += '<li><p>' + element.FullText + '</li>';
+        })
+        message += '</ul> </div>';
+    }
+    message += "</div>";
     return message;
 }
