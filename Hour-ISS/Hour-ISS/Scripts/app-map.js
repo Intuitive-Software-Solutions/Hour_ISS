@@ -61,8 +61,10 @@ function placeMarkers(coords, array) {
 
 
 function createListeningMarker(latlng, ISSelement) {
+    var icon = 'international-space-station-custom-marker_46x28.png';
     var marker = new google.maps.Marker({
         position: latlng,
+        icon: icon,
         map: map
     });
     google.maps.event.addListener(marker, 'click', function () {
