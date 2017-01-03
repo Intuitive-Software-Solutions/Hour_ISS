@@ -50,13 +50,10 @@ var getCountryContent = function (countryCode) {
         var country = countries[countryCode.location];
         message+='<h5>' + country.name + '</h5></br>';
         message += '<h6> Capital City : ' + country.capitalCity + '</h6></br>';
-        console.log('******');
-        console.log(country);
     }
     else {
-        message = '<h3>' + countryCode.location + '</h3>';
+        message += '<h3>' + countryCode.location + '</h3>';
     }
-
 
     if (countryCode.trends != null) {
         message += '<span><small>Top 3 Trending Topics</small></span>';
@@ -79,6 +76,7 @@ var getCountryContent = function (countryCode) {
         })
         message += ' ';
     }
+    message += '<br/><small>'+countryCode.time+'</small>';
     message += "</div>";
     return message;
 }
