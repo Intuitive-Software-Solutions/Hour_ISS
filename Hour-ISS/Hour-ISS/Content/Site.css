@@ -63,7 +63,7 @@ font-family: 'Crimson Text', serif;
 
 #mapCard{
     min-height:100vh;
-    background-color: #E5DFE3;
+    background: #E5DFE3;
 }
 #mediaCard{
     min-height:100vh;}
