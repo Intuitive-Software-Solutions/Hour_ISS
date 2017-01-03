@@ -14,11 +14,12 @@ var APOD = function () {
         success: function (data) {
             let html = "";
             if(data.media_type!== "image"){
-                html='<iframe height:"450" width:"600"  id="APOD"src ="'+ data.url + '"></iframe>';
+                html = '<a class="wrapper"><iframe height:"450" width:"600"  id="APOD"src ="' + data.url + '" alt="' + data.title + '"></iframe>';
             }
             else{
-                html='<img src="'+ data.url + '" id="APOD" class="img-responsive" >';
+                html = '<a class="wrapper"><img src="' + data.url + '" id="APOD" class="img-responsive" alt="' + data.title + '">';
             }
+            html += '</a><div class="description"><small>' + data.explanation + '</small></div>';
             $("#APOD").empty().append(html);
         }
     });
