@@ -52,7 +52,7 @@ var getCountryContent = function (countryCode) {
         message += '<h6> Capital City : ' + country.capitalCity + '</h6></br>';
     }
     else {
-        message += '<h3>' + countryCode.location + '</h3>';
+        message += '<h3>' + countryCode.location + '</h3></br>';
     }
 
     if (countryCode.trends != null) {

@@ -2,12 +2,20 @@
     ViewBag.Title = "Hour ISS";
 }
 
+<div class="container-fluid" id="howTo">
+    <div class="container-fluid" id="intro">
+        <p class="text-justify">
+            <h1 class="display-1">Hello!</h1>
+            <h3 class="display-3">Here is how you use this website.</h3>
+        </p>
+    </div>
+</div>
 <div class="container-fluid" id="mapCard">
     <center>
     <div id="map"></div>
     </center>
+
 </div>
-<hr />
 <div class="container-fluid" id="mediaCard">
     <div class="row">
         <div class="col-md-5">
@@ -24,15 +32,17 @@
             <div id="APOD"></div>
         </div>
     </div>
+
 </div>
-<hr/>
 <div class="container-fluid" id="introCard">
-    <p class="text-justify">
-        <h1 class="display-1">Hello!</h1>
-        <h3 class="display-3">here is some information about the ISS</h3>
-    </p>
+    <div class="container-fluid" id="intro">
+        <p class="text-justify">
+            <h1 class="display-1">Hello!</h1>
+            <h3 class="display-3">here is some information about the ISS</h3>
+        </p>
+    </div>
+
 </div>
-<hr />
 <div class="container-fluid" id="contactCard"><p class="lead">Completed for DevCodeCamp in Milwaukee, Wi.</p></div>
 <div id="dataBinder" data-request-url="@Url.Action("Save", "Home")"></div>
 <div id="GetData" data-request-url="@Url.Action("PostData", "Home")"></div>

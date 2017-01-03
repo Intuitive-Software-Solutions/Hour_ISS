@@ -1,14 +1,10 @@
-﻿body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-}
-
+﻿
 html, body{
     height:100%;
 font-family: 'Nunito', sans-serif;
 }
 .navbar {
+    background-color: #68C3A3;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -52,23 +48,36 @@ font-family: 'Crimson Text', serif;
         max-width: 100%;    
     _width: 100%;
 }
+#howTo{
+    min-height:100vh;
+    background:#6C7A89;
+    color:white;
+}
 #introCard{
     min-height:100vh;
-    width: 70%;
 }
 
+#intro{
+    width:70%;
+}
 #mapCard{
-    min-height:100vh;}
+    min-height:100vh;
+    background: #E5E3DF;
+
+}
 #mediaCard{
-    min-height:100vh;}
-#contactCard{min-height:20vh;}
+    min-height:100vh;
+    background:#F2F1EF;
+}
+#contactCard{min-height:20vh;
+             background-color:#68C3A3;
+}
 
 hr{
     
     background-color: #eee;
     border: 0 none;
     height: 1px;
-    margin: 5%;
 }
 h1,h2{
 font-family: 'Crimson Text', serif;
