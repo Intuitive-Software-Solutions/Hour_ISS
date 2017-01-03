@@ -8,7 +8,6 @@ html, body{
     height:100%;
 }
 .navbar {
-    margin-bottom: 20px;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -53,9 +52,18 @@ html, body{
 }
 #introCard{
     min-height:100vh;
+    width: 70%;
 }
 #mapCard{
     min-height:100vh;}
 #mediaCard{
     min-height:100vh;}
 #contactCard{min-height:20vh;}
+
+hr{
+    
+    background-color: #eee;
+    border: 0 none;
+    height: 1px;
+    margin: 5%;
+}
