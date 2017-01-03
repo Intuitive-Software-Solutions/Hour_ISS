@@ -32,6 +32,10 @@ textarea {
 #map{
     height: 680px;
     width: 1024px;
+    background-color: #fff !important;
+}
+#map_canvas div div div div div div img{
+    visibility: hidden;
 }
 html, body{
     height: 100%;
@@ -50,7 +54,7 @@ font-family: 'Crimson Text', serif;
 }
 #APOD img{
         max-width: 100%;    
-    _width: 100%;
+        _width: 100%;
 }
 #introCard{
     min-height:100vh;
@@ -58,7 +62,9 @@ font-family: 'Crimson Text', serif;
 }
 
 #mapCard{
-    min-height:100vh;}
+    min-height:100vh;
+    background-color: #E5DFE3;
+}
 #mediaCard{
     min-height:100vh;}
 #contactCard{min-height:20vh;}
