@@ -64,8 +64,10 @@ namespace Hour_ISS.Controllers
                     GeoCode = new GeoCode(ISScontext[id].lat, ISScontext[id].lng, 100, DistanceMeasure.Miles),
                     SearchType = SearchResultType.Recent,
                     MaximumNumberOfResults = 3,
-                    Filters = TweetSearchFilters.Images
+                    TweetSearchType = TweetSearchType.OriginalTweetsOnly,
+                
                 };
+
 
                 var tweets = Search.SearchTweets(searchParameter);
                 if (tweets == null)

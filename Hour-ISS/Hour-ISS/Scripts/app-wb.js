@@ -70,11 +70,10 @@ var getCountryContent = function (countryCode) {
         message += '<span><small>Local Tweets</small></span>';
 
         countryCode.tweets.forEach(function (element) {
-            message += '<blockquote >' + element.FullText + '...'+ element.Source + '</blockquote>';
+            message += '<blockquote class="blockquote"><p>' + element.FullText + ' ... <a href="' + element.Url+ '">'+element.CreatedBy.Name + '</a></p></blockquote>';
             console.log('tweet');
             console.log(element.FullText);
         })
-        message += ' ';
     }
     message += '<br/><small>'+countryCode.time+'</small>';
     message += "</div>";

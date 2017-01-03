@@ -35,7 +35,7 @@ function initMap() {
             disableDoubleClickZoom: true,
             backgroundColor: 'none',
             gestureHandling: 'none',
-            mapTypeId: 'terrain'
+            mapTypeId: 'satellite'
         });
         google.maps.event.addDomListener(window, "resize", function () {
             var center = map.getCenter(26, 8);
@@ -61,7 +61,7 @@ function placeMarkers(coords, array) {
 
 
 function createListeningMarker(latlng, ISSelement) {
-    var icon = 'international-space-station-custom-marker_46x28.png';
+    var icon = '../Content/img/international-space-station-custom-marker_46x28.png';
     var marker = new google.maps.Marker({
         position: latlng,
         icon: icon,
