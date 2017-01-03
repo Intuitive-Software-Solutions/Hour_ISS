@@ -33,6 +33,7 @@ function initMap() {
             panControl: true,
             keyboardShortcuts: false,
             disableDoubleClickZoom: true,
+            backgroundColor: 'none',
             gestureHandling: 'none',
             mapTypeId: 'terrain'
         });
