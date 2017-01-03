@@ -48,7 +48,6 @@ var getCountryContent = function (countryCode) {
     message = '<div class="infoWindow">';
     if (countryCode.location.length == 2) {
         var country = countries[countryCode.location];
-        message = '<h4>' + countryCode.name + '</h4></br>';
         message+='<h5>' + country.name + '</h5></br>';
         message += '<h6> Capital City : ' + country.capitalCity + '</h6></br>';
         console.log('******');
@@ -72,7 +71,6 @@ var getCountryContent = function (countryCode) {
     }
     if (countryCode.tweets[0] != null) {
         message += '<span><small>Local Tweets</small></span>';
-        message += '<ul class ="dropdown-menu" id="tweets">';
 
         countryCode.tweets.forEach(function (element) {
             message += '<blockquote >' + element.FullText + '...'+ element.Source + '</blockquote>';

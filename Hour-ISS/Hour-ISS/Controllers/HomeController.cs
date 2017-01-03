@@ -39,7 +39,6 @@ namespace Hour_ISS.Controllers
             for(int i= 0; i<ISScontext.Length; i++)
             {
                 ISScontext[i].tweets = GetTweets(i);
-                ISScontext[i].name = GetName(i);
                 ISScontext[i].trends = GetTrends(i);
             }
 
@@ -63,8 +62,8 @@ namespace Hour_ISS.Controllers
                 var searchParameter = new SearchTweetsParameters("*")
                 {
                     GeoCode = new GeoCode(ISScontext[id].lat, ISScontext[id].lng, 100, DistanceMeasure.Miles),
-                    SearchType = SearchResultType.Popular,
-                    MaximumNumberOfResults = 10,
+                    SearchType = SearchResultType.Recent,
+                    MaximumNumberOfResults = 3,
                     Filters = TweetSearchFilters.Images
                 };
 
@@ -79,20 +78,7 @@ namespace Hour_ISS.Controllers
 
         }
 
-        public string GetName(int id)
-        {
-            var name = "";
-            if (ISScontext != null)
-            {
-                var closestTrendLocations = Trends.GetClosestTrendLocations(ISScontext[id].lat, ISScontext[id].lng);
-                if (closestTrendLocations != null)
-                {
-                    name = closestTrendLocations.ElementAt(0).Name;
-                   
-                }
-            }
-            return name;
-        }
+
         public ITrend[] GetTrends(int id)
         {
             if (ISScontext != null)
