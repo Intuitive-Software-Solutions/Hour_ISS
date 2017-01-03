@@ -1,38 +1,31 @@
-﻿body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-
+﻿body{
+    background:#6C7A89;
 }
-
 html, body{
     height:100%;
 font-family: 'Nunito', sans-serif;
 }
 .navbar {
+    background-color: #68C3A3;
 }
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+
+a{
+    color:#68C3A3;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
 }
 #map{
-    height: 680px;
-    width: 1024px;
-    background-color: #fff !important;
+    height: 100vh;
+    width: 90vw;
 }
 #map_canvas div div div div div div img{
     visibility: hidden;
@@ -44,7 +37,12 @@ html, body{
 }
 
 a.twitter-timeline{
-font-family: 'Crimson Text', serif;
+  font: normal 12px/18px Helvetica, Arial, sans-serif;
+}
+
+a.twitter-timeline:hover,
+a.twitter-timeline:focus {
+  background-color: #68C3A3;
 }
 
 
@@ -52,29 +50,72 @@ font-family: 'Crimson Text', serif;
    
     width: auto;
 }
+
+#APOD:hover div.description {
+    display: block;
+}
 #APOD img{
         max-width: 100%;    
         _width: 100%;
 }
+.description {
+    display: none;
+    position: absolute;
+    text-align: justify;
+    text-overflow:ellipsis;
+    top: 30%;
+    width:90%;
+    padding-left:5%;
+    color:white;
+}
+#howTo{
+    min-height:100vh;
+    background:#6C7A89;
+    color:white;
+    padding-top:2%;
+    padding-bottom: 2%;
+}
 #introCard{
     min-height:100vh;
-    width: 70%;
+    background:white;
+    
+    padding-top:2%;
+    padding-bottom: 2%;
 }
 
+#intro{
+    width:70%;
+}
 #mapCard{
     min-height:100vh;
-    background: #E5DFE3;
+    background: #E5E3DF;
+    padding-top:5%;
+    padding-bottom: 5%;
+
 }
 #mediaCard{
-    min-height:100vh;}
-#contactCard{min-height:20vh;}
+    min-height:100vh;
+    background: #F2F1EF;
+    padding-top:2%;
+    padding-bottom: 2%;
+    
+    padding-top:2%;
+    padding-bottom: 2%;
+
+}
+#contactCard{min-height:20vh;
+             background-color:#68C3A3;
+             
+    padding-top:2%;
+    padding-bottom: 2%;
+    text-align:center;
+}
 
 hr{
     
     background-color: #eee;
     border: 0 none;
     height: 1px;
-    margin: 5%;
 }
 h1,h2{
 font-family: 'Crimson Text', serif;
