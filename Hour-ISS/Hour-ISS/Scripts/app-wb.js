@@ -48,29 +48,38 @@ var getCountryContent = function (countryCode) {
     message = '<div class="infoWindow">';
     if (countryCode.location.length == 2) {
         var country = countries[countryCode.location];
-        message = '<h3>' + country.name + '</h3>';
-        console.log('******' + country);
+        message = '<h4>' + countryCode.name + '</h4></br>';
+        message+='<h5>' + country.name + '</h5></br>';
+        message += '<h6> Capital City : ' + country.capitalCity + '</h6></br>';
+        console.log('******');
+        console.log(country);
     }
     else {
         message = '<h3>' + countryCode.location + '</h3>';
     }
 
+
     if (countryCode.trends != null) {
-        message +='<div class="dropdown"> <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Trends   <span class="caret"></span></button>'
-        message += '<ul class ="dropdown-menu" id="trends">'
-        countryCode.trends.forEach(function (element) {
-            message += '<li><a href = "'+element.URL+'">' + element.Name + '</a></li>'; 
-        })
-        message += '</ul> </div>';
+        message += '<span><small>Top 3 Trending Topics</small></span>';
+        message += '<ul class ="list-inline" id="trends">';
+
+        for (i = 0; i < 3; i++) {
+            if(countryCode.trends[i]==null){break;}
+                message += '<li class = "list-inline-item"><a href = "' + countryCode.trends[i].URL + '">' + countryCode.trends[i].Name + '</a></li>';
+            
+        }
+        message += '</ul> ';
     }
     if (countryCode.tweets[0] != null) {
-        message += '<div class="dropdown"> <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Tweets   <span class="caret"></span></button>'
-        message += '<ul class ="dropdown-menu" id="tweets">'
+        message += '<span><small>Local Tweets</small></span>';
+        message += '<ul class ="dropdown-menu" id="tweets">';
 
         countryCode.tweets.forEach(function (element) {
-            message += '<li><p>' + element.FullText + '</li>';
+            message += '<blockquote >' + element.FullText + '...'+ element.Source + '</blockquote>';
+            console.log('tweet');
+            console.log(element.FullText);
         })
-        message += '</ul> </div>';
+        message += ' ';
     }
     message += "</div>";
     return message;
