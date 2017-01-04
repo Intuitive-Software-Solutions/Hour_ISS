@@ -61,7 +61,7 @@ var getCountryContent = function (countryCode) {
 
         for (i = 0; i < 3; i++) {
             if(countryCode.trends[i]==null){break;}
-                message += '<li class = "list-inline-item"><a href = "' + countryCode.trends[i].URL + '">' + countryCode.trends[i].Name + '</a></li>';
+            message += '<li class = "list-inline-item"><a target="_blank" href = "' + countryCode.trends[i].URL + '">' + countryCode.trends[i].Name + '</a></li>';
             
         }
         message += '</ul> ';
@@ -70,7 +70,7 @@ var getCountryContent = function (countryCode) {
         message += '<span><small>Local Tweets</small></span>';
 
         countryCode.tweets.forEach(function (element) {
-            message += '<blockquote class="blockquote"><p>' + element.FullText + ' ... <a href="' + element.Url+ '">'+element.CreatedBy.Name + '</a></p></blockquote>';
+            message += '<blockquote class="blockquote"><p>' + element.FullText + ' ... <a target="_blank" href="' + element.Url + '">' + element.CreatedBy.Name + '</a></p></blockquote>';
             console.log('tweet');
             console.log(element.FullText);
         })
