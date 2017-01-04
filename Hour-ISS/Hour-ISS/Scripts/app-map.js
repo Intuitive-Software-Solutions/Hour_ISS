@@ -23,11 +23,11 @@ var map;
 function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 2,
-            minzoom: 2,
-            maxzoom: 2,
+            minzoom: 5,
+            maxzoom: 15,
             center: new google.maps.LatLng(26, 8),
             draggable: true,
-            zoomControl: false,
+            zoomControl: true,
             streetViewControl: false,
             scrollwheel: false,
             panControl: true,
